@@ -3,13 +3,13 @@ pipeline {
 	stages {
 		stage('Checkout SCM') {
 			steps {
-				checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/JoyceLeow/JenkinsDependencyCheckTest.git']]])
+				git '/home/JenkinsDependencyCheckTest'
 			}
 		}
 
 		stage('OWASP DependencyCheck') {
 			steps {
-				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
+				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
 			}
 		}
 	}	
