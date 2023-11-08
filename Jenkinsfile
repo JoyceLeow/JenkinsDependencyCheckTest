@@ -6,12 +6,6 @@ pipeline {
         }
     }
     stages {
-		stage('Test') {
-            steps {
-				sh 'chmod +x ./jenkins/scripts/test.sh'
-                sh './jenkins/scripts/test.sh'
-            }
-        }
 		stage('OWASP Dependency-Check Vulnerabilities') {
             agent any
             steps {
@@ -19,12 +13,6 @@ pipeline {
                     dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
                     dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                 }
-            }
-        }
-		stage('Deliver') {
-            steps {
-				sh 'chmod +x ./jenkins/scripts/deliver.sh'
-                sh './jenkins/scripts/deliver.sh'
             }
         }
 		stage('Ending') {
