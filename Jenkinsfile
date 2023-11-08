@@ -5,7 +5,7 @@ pipeline {
             args '-p 3000:3000' 
         }
     }
-    stages 
+    stages {
 		stage('Test') {
             steps {
 				sh 'chmod +x ./jenkins/scripts/test.sh'
@@ -35,3 +35,4 @@ pipeline {
             }
         }
     }
+}	
